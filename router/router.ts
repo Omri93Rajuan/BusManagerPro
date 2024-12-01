@@ -1,18 +1,21 @@
-import express, { IRouter, NextFunction, Request, Response }  from 'express'
-import dataContoller from "../src/controllers/dataContoller"
-import authController from "../src/controllers/authController"
-import { verifyAdmin, verifyUser } from '../helpers/jwt';
-import { handleError } from '../utils/ErrorHandle';
+import express, { IRouter, NextFunction, Request, Response } from "express";
+import dataContoller from "../src/controllers/usersContoller";
+import authController from "../src/controllers/authController";
+import busController from "../src/controllers/busesConroller";
+import lineController from "../src/controllers/linesController";
+import { verifyAdmin, verifyUser } from "../helpers/jwt";
+import { handleError } from "../utils/ErrorHandle";
 
-const router:IRouter = express.Router()
+const router: IRouter = express.Router();
 
-router.use("/data",verifyUser as NextFunction,dataContoller );
-router.use("/admin-role",verifyAdmin as NextFunction,dataContoller );
-router.use("/auth",authController );
+router.use("/users", dataContoller);
+router.use("/lines", lineController);
+router.use("/buses", busController);
 
-router.use((req:Request,res:Response)=>{
-handleError(res,404,"Miki is not found at Nimrodi Tower")
-})
+router.use("/auth", authController);
 
+router.use((req: Request, res: Response) => {
+  handleError(res, 404, "Miki is not found at Nimrodi Tower");
+});
 
-export default router
+export default router;
