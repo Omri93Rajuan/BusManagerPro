@@ -1,0 +1,18 @@
+[
+  {
+    "licensePlate": "123-456-789",
+    "modelBus": "Volvo 123",
+    "capacity": 50,
+    "status": "in service",
+    "driverID": "abc123",
+    "routeID": "route123"
+  },
+  {
+    "licensePlate": "987-654-321",
+    "modelBus": "Mercedes 456",
+    "capacity": 60,
+    "status": "out of service",
+    "driverID": "def456",
+    "routeID": "route456"
+  }
+]
