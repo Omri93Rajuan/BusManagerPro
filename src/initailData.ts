@@ -1,6 +1,8 @@
 import fs from "fs";
 import bcrypt from "bcrypt";
-import User from "./models/user"; // Your User model
+import User from "./models/user"; // המודל של המשתמש
+import Bus from "./models/bus"; // המודל של האוטובוס
+import Line from "./models/line"; // המודל של הקו
 
 /**
  * Encrypts passwords for all users in the provided data array.
@@ -25,7 +27,7 @@ async function encryptPasswords(userData: any[]) {
  */
 async function loadInitialData() {
   // Read user data from a JSON file
-  const userData = JSON.parse(fs.readFileSync("./data/users.json", "utf8"));
+  const userData = JSON.parse(fs.readFileSync("./data/Users.json", "utf8"));
 
   // Check if the database is empty
   if ((await User.countDocuments()) === 0) {
@@ -35,6 +37,24 @@ async function loadInitialData() {
     console.log("Initial users have been added to the database.");
   } else {
     console.log("Users already exist in the database.");
+  }
+
+  const busData = JSON.parse(fs.readFileSync("./data/Buses.json", "utf8"));
+  const lineData = JSON.parse(fs.readFileSync("./data/Lines.json", "utf8"));
+
+  if ((await Bus.countDocuments()) === 0) {
+    await Bus.insertMany(busData);
+    console.log("Initial buses have been added to the database.");
+  } else {
+    console.log("Buses already exist in the database.");
+  }
+
+  // Check if lines exist and insert if necessary
+  if ((await Line.countDocuments()) === 0) {
+    await Line.insertMany(lineData);
+    console.log("Initial lines have been added to the database.");
+  } else {
+    console.log("Lines already exist in the database.");
   }
 }
 
