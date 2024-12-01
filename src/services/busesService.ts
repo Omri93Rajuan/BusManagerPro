@@ -28,7 +28,7 @@ const getBusById = async (busId: string) => {
 // להוסיף אוטובוס חדש
 const addBus = async (busData: IBus) => {
   try {
-    if (!busData.licensePlate || !busData.model) {
+    if (!busData.licensePlate || !busData.busModel) {
       throw new Error("Missing required fields");
     }
 

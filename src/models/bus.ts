@@ -6,8 +6,8 @@ export interface IBus extends Document {
   busModel: string;
   capacity: number;
   status: "service" | "out of service" | "maintenance";
-  driverID: mongoose.Types.ObjectId;
-  routeID: mongoose.Types.ObjectId;
+  driverID: string;
+  routeID: string;
 }
 const busSchema: Schema = new Schema(
   {
