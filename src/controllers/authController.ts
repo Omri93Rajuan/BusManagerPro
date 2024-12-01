@@ -15,7 +15,6 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
     handleError(res, error.status, error.message);
   }
 });
-
 router.post("/logout", (req: Request, res: Response): void => {
   try {
     logout(res);

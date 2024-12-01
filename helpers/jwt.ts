@@ -12,8 +12,8 @@ interface TokenPayload {
 const SECRET_KEY = process.env.JWT_SECRET || "fallback_secret_key";
 
 // Generate token
-const generateAuthToken = (user: { _id: any; isAdmin: boolean }): string => {
-  return jwt.sign({ id: user._id, isAdmin: user.isAdmin }, SECRET_KEY, {
+const generateAuthToken = (user: { _id: any }): string => {
+  return jwt.sign({ id: user._id }, SECRET_KEY, {
     expiresIn: "1h",
   });
 };
