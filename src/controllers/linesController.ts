@@ -10,7 +10,6 @@ import { handleError } from "../../utils/ErrorHandle";
 
 const router: IRouter = express.Router();
 
-// לקבל את כל הנתיבים
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const lines = await getAllLines();
@@ -20,7 +19,6 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// לקבל נתיב לפי ID
 router.get("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const line = await getLineById(req.params.id);
@@ -30,7 +28,6 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// להוסיף נתיב חדש
 router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const line = await addLine(req.body);
@@ -40,7 +37,6 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// לעדכן נתיב
 router.patch("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const updatedLine = await updateLine(req.params.id, req.body);
@@ -50,7 +46,6 @@ router.patch("/:id", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// למחוק נתיב
 router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await deleteLine(req.params.id);

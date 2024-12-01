@@ -10,7 +10,6 @@ import { handleError } from "../../utils/ErrorHandle";
 
 const router: IRouter = express.Router();
 
-// לקבל את כל האוטובוסים
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const buses = await getAllBuses();
@@ -20,7 +19,6 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// לקבל אוטובוס לפי ID
 router.get("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const bus = await getBusById(req.params.id);
@@ -30,7 +28,6 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// להוסיף אוטובוס חדש
 router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const bus = await addBus(req.body);
@@ -40,7 +37,6 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// לעדכן אוטובוס
 router.patch("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const updatedBus = await updateBus(req.params.id, req.body);
@@ -50,7 +46,6 @@ router.patch("/:id", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// למחוק אוטובוס
 router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await deleteBus(req.params.id);
